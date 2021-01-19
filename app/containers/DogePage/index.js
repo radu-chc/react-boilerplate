@@ -6,19 +6,24 @@
  */
 
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
 import Button from 'react-bootstrap/Button';
 
 // Using Virtualized Select component in order to optimize performance.
 import Select from 'react-select-virtualized';
 
-import { Graph } from "react-d3-graph";
+import { Graph } from 'react-d3-graph';
 
 import { FormattedMessage } from 'react-intl';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 import doge from '../../images/doge.png';
 import messages from './messages';
+
+
+const DogeHeader = styled.h1`
+	padding-bottom: 1em;
+	border-bottom: 1px solid #777;
+`;
 
 
 const PageWrapper = styled.div`
@@ -48,7 +53,7 @@ const InstructionsWrapper = styled.div`
   color: #777;
 `;
 
-class HomePage extends React.Component {
+class DogePage extends React.Component {
 
  	constructor(props) {
     	super(props);
@@ -150,7 +155,7 @@ class HomePage extends React.Component {
     	while (currentDepth < depth && nodesQueue.length > 0) {
     		const sourceNode = nodesQueue.shift();
     		
-    		if(this.linksMap[sourceNode]) {
+    		if (this.linksMap[sourceNode]) {
     			let newTargetNodesObj = [];
 	    		this.linksMap[sourceNode].map((targetNode) => {
 		    		if (!nodesArr.includes(targetNode)) {
@@ -210,10 +215,10 @@ class HomePage extends React.Component {
 		return (
 			<PageWrapper>
 				<SelectorsWrapper>
-				    <h1>
+				    <DogeHeader>
 				      <FormattedMessage {...messages.header} />
 				      <img src={doge} alt="Doge" height="75px" width="75px"/>
-				    </h1>
+				    </DogeHeader>
 
 				    <h2> Choose Source Node </h2>
 				    <Select
@@ -270,4 +275,4 @@ class HomePage extends React.Component {
 	}
 }
 
-export default HomePage;
+export default DogePage;
